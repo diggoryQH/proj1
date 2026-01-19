@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Your Cart</title>
+  </head>
+  <body>
+    <h2>Your Shopping Cart</h2>
+
+    {% if items %}
+    <table border="1">
+      <tr>
+        <th>Book</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total</th>
+      </tr>
+
+      {% for item in items %}
+      <tr>
+        <td>{{ item.book.title }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.book.price }}</td>
+        <td>{{ item.quantity|floatformat:0 }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% else %}
+    <p>Your cart is empty.</p>
+    {% endif %}
+
+    <br />
+    <a href="/">← Back to book catalog</a>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Book Catalog</title>
+  </head>
+  <body>
+    {% if user.is_authenticated %}
+    <p>Hello <strong>{{ user.username }}</strong></p>
+
+    <form method="post" action="{% url 'logout' %}">
+      {% csrf_token %}
+      <button type="submit">Logout</button>
+    </form>
+
+    <hr />
+
+    <h2>Book Catalog</h2>
+
+    {% for book in books %}
+    <p>
+      {{ book.title }} - {{ book.price }}$
+      <a href="/cart/add/{{ book.id }}/">Add to Cart</a>
+    </p>
+    {% empty %}
+    <p>No books available</p>
+    {% endfor %}
+
+    <a href="/cart/">View Cart</a>
+
+    {% else %}
+    <a href="/accounts/login/">Login</a> |
+    <a href="/accounts/register/">Register</a>
+    {% endif %}
+  </body>
+</html>

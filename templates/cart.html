@@ -1,0 +1,7 @@
+<h2>Your Cart</h2>
+
+{% for item in items %}
+<p>{{ item.book.title }} - Quantity: {{ item.quantity }}</p>
+{% endfor %}
+
+<a href="/">Back to books</a>
